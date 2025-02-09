@@ -13,19 +13,15 @@ export const insertDragon = async (lastCheckedDT: Date, dustLevel: number, vacci
     catch (e) {
         throw new Error(e instanceof Error ? e.message : String(e));
     }
-
-    console.log("hh");
     
     
 
     if (dustLevel < 0 || dustLevel > 70) {
-        console.log("invalid dust level");
-        throw new Error('Invalid dust level');
+        return "Invalid dust level";
     }
 
     if (vaccinatedCnt < 0) {
-        console.log("invalid vaccinated count");
-        throw new Error('Invalid vaccinated count');
+        return "Invalid vaccinated count";
     }
     console.log(lastCheckedDT, dustLevel, vaccinatedCnt);
     

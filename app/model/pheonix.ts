@@ -33,14 +33,11 @@ export const insertPheonix = async (lastCheckedDT: Date, vaccinatedCnt: number, 
 
     //check fire mai lam certification
     if (fireCert === false) {
-        console.log("invalid fire certification");
-        
-        throw new Error('Invalid fire certification');
+        return "Invalid fire certification";
     }
 
     if (vaccinatedCnt < 0) {
-        console.log("invalid vaccinated count");
-        throw new Error('Invalid vaccinated count');
+        return "Invalid vaccinated count";
     }
     
 

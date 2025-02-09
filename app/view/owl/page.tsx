@@ -26,6 +26,9 @@ export default function page({}: Props) {
                 petType: "Owl",
             }),
         })
+        //alert response
+        const result = await res.json();
+        alert(JSON.stringify(result));
     }
   return (
     // beautiful modern form that will set current dragon

@@ -21,21 +21,16 @@ export const insertOwl = async (lastCheckedDT: Date, vaccinatedCnt: number, long
     }
     
     if (vaccinatedCnt < 0) {
-        console.log("invalid vaccinated count");
-        
-        throw new Error('Invalid vaccinated count');
+        return "Invalid vaccinated count";
     }
 
     if (longestFlyingLength === undefined || isNaN(longestFlyingLength)) {
-        console.log("invalid flying length");
-        throw new Error("Invalid flying length");
+        return "Invalid flying length";
       }
 
     // check bin dai doi mai tan kow
     if (longestFlyingLength < 100) {
-        console.log("invalid flying length");
-        
-        throw new Error('Invalid flying length');
+        return "Invalid flying length";
     }
 
     
