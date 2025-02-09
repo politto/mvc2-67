@@ -19,7 +19,7 @@ export default function page({}: Props) {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                foodCode,
+                petType: "Dragon",
                 lastCheckedDT,
                 dustLevel,
                 vaccinatedCnt
@@ -40,13 +40,7 @@ export default function page({}: Props) {
             </p>
             </div>
             <div className="flex flex-col items-center justify-center space-x-4 mt-6 bg-slate-400 p-5 gap-4">
-            food code
-            <input
-                type="text"
-                placeholder="food code"
-                value={foodCode}
-                onChange={(e) => setFoodCode(f => e.target.value)}
-            />
+            
             last checked date
             <input
                 type="date"

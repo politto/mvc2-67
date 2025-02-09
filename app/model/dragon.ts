@@ -6,20 +6,25 @@ export const insertDragon = async (lastCheckedDT: Date, dustLevel: number, vacci
 
     try {
         const incrementCnt = await prisma.counter.update({
-            where: { id: 1 },
+            where: { id: 0 },
             data: { count: { increment: 1 } }
         });
     }
     catch (e) {
         throw new Error(e instanceof Error ? e.message : String(e));
     }
+
+    console.log("hh");
+    
     
 
     if (dustLevel < 0 || dustLevel > 70) {
+        console.log("invalid dust level");
         throw new Error('Invalid dust level');
     }
 
     if (vaccinatedCnt < 0) {
+        console.log("invalid vaccinated count");
         throw new Error('Invalid vaccinated count');
     }
     console.log(lastCheckedDT, dustLevel, vaccinatedCnt);
@@ -49,4 +54,10 @@ export const randomFoodCode = () => {
     let code = Math.floor(Math.random() * 90000000) + 10000000;
     return code.toString();
 }
-        
+
+//get number of dragons in the database
+export const getNumOfDragons = async () => {
+    return await prisma.pet.count({
+        where: { type: 'Dragon' }
+    });
+}

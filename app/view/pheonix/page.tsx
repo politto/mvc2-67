@@ -8,11 +8,11 @@ type Props = {}
 export default function page({}: Props) {
     const [foodCode, setFoodCode] = useState<string>('')
     const [lastCheckedDT, setLastCheckedDT] = useState<Date>(new Date())
-    const [longestFlyingRange, setLongestFlyingRange] = useState<number>(0)
+    const [fireCert, SetFireCert] = useState<boolean>(false)
     const [vaccinatedCnt, setVaccinatedCnt] = useState<number>(0)
     // when submitted, will send a POST request to the server
     const handleSubmit = async () => {
-        
+        //fetch from backend (all also code like this in all other animal file)
         const res = await fetch('/api/validation', {
             method: 'POST',
             headers: {
@@ -21,9 +21,9 @@ export default function page({}: Props) {
             body: JSON.stringify({
                 foodCode,
                 lastCheckedDT,
-                longestFlyingRange,
+                fireCert,
                 vaccinatedCnt,
-                petType: "Owl",
+                petType: "Pheonix",
             }),
         })
     }
@@ -33,10 +33,10 @@ export default function page({}: Props) {
         <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
             <div>
             <h1 className="text-6xl font-bold">
-            Owl
+            Pheonix
             </h1>
             <p className="mt-3 text-2xl">
-            Set your owl's food code, last checked date, and longest flying range
+            Set your Pheonix's food code, last checked date, and fire cert
             </p>
             </div>
             <div className="flex flex-col items-center justify-center space-x-4 mt-6 bg-slate-400 p-5 gap-4">
@@ -48,13 +48,11 @@ export default function page({}: Props) {
                 value={lastCheckedDT.toISOString().split('T')[0]}
                 onChange={(e) => setLastCheckedDT(new Date(e.target.value))}
             />
-            longest flying range
-            <input
-                type="number"
-                placeholder="dust level"
-                value={longestFlyingRange}
-                onChange={(e) => setLongestFlyingRange(parseInt(e.target.value))}
-            />
+            fire mai lam certificate
+            <select value={fireCert.toString()} onChange={(e) => SetFireCert(e.target.value === 'true')}>
+                <option value="true">true</option>
+                <option value="false">false</option>
+            </select>
             vaccinated count
             <input
                 type="number"

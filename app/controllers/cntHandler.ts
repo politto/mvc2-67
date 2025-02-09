@@ -1,14 +1,29 @@
 import { NextApiRequest, NextApiResponse } from "next";
+import { getCandidateCount } from "../model/counter";
+import { getNumOfDragons } from "../model/dragon";
+import { getNumOfOwls } from "../model/owl";
+import { getNumOfPheonixes } from "../model/pheonix";
 
-export default async function CntHandler(req:  NextApiRequest, res: NextApiResponse) {
-    if (req.method === "GET") {
-        try {
-            const currentCnt = await getCnt();
-            res.status(200).json(currentCnt);
-        }
-        catch (e) {
-            res.status(400).json({ message: e.message });
-        }
+type Props = {
+
+}
+
+export default async function CntHandler({}: Props) {
+
+    // get the counter from the db
+    const candidateCount = await getCandidateCount();
+    const dragonCount = await getNumOfDragons();
+    const owlCount = await getNumOfOwls();
+    const pheonixCount = await getNumOfPheonixes();
+
+    console.log(candidateCount, dragonCount, owlCount, pheonixCount);
+    
+    return {
+        all: candidateCount?.count,
+        dragon: dragonCount,
+        owl: owlCount,
+        pheonix: pheonixCount
     }
+  
 
 }

@@ -66,3 +66,9 @@ export const randomFoodCode = () => {
     return code.toString();
 }
         
+//get number of owls in the database
+export const getNumOfOwls = async () => {
+    return await prisma.pet.count({
+        where: { type: 'Owl' }
+    });
+}

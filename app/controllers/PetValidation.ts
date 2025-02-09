@@ -20,22 +20,11 @@ export default async function PetValidation({lastCheckedDT, dustLevel, vaccinate
   let ret = "";
 console.log("aaaaaaaa");
 
-
-  // validates that foodCode can't start with 0 and contains only numbers
-//   if (foodCode[0] === '0' || isNaN(Number(foodCode))) {
-//     ret = 'Invalid food code';
-//   }
-// 
-//   //food code must be 8 characters long
-//   if (foodCode.length !== 8) {
-//     ret = 'Invalid food code length';
-//   }
-
   if (lastCheckedDT === null || lastCheckedDT > new Date()) {
     ret = 'Invalid last checked date';
   }
 
-  
+    // specifies the type of pet and calls model files and fns to handle the data
     if (petType === "Dragon") {
       try {
         const dragon = await insertDragon( lastCheckedDT, dustLevel!, vaccinatedCnt);
